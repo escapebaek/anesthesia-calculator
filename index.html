@@ -34,433 +34,448 @@
         --shadow-medium: rgba(0, 0, 0, 0.15);
         --shadow-heavy: rgba(0, 0, 0, 0.25);
         --shadow-primary: 0 4px 15px rgba(43, 88, 118, 0.2);
-        --navbar-height: 70px;
-        --border-radius: 16px;
-        --border-radius-lg: 20px;
-        --border-radius-xl: 24px;
+        --border-radius: 12px;
+        --border-radius-lg: 16px;
         --transition: all 0.3s ease;
         --transition-fast: all 0.2s ease;
       }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      @keyframes heroFadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @keyframes shimmer {
-        0% {
-          left: -100%;
-        }
-        100% {
-          left: 100%;
-        }
-      }
+
       * {
         box-sizing: border-box;
-      }
-      body {
-        font-family: "Poppins", sans-serif;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        background: var(--bg-gradient);
-        line-height: 1.6;
-        font-weight: 400;
         margin: 0;
         padding: 0;
-        color: var(--text-dark);
       }
 
-      .container-fluid {
-        max-width: 1800px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-      .row {
-        display: flex;
-        flex-wrap: wrap;
-        margin-right: -15px;
-        margin-left: -15px;
-      }
-      .col-md-4 {
-        position: relative;
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px;
-      }
-      @media (min-width: 768px) {
-        .col-md-4 {
-          flex: 0 0 33.333333%;
-          max-width: 33.333333%;
-        }
-      }
-      .text-center {
-        text-align: center;
-      }
-
-      .calculator-hero {
-        padding: 4rem 0;
-        margin-bottom: 3rem;
-        position: relative;
-        background: var(--primary-gradient);
-        color: var(--text-light);
-        overflow: hidden;
-      }
-      .hero-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSIjMjIyIj48L3JlY3Q+CjxwYXRoIGQ9Ik0yOCA2NkwwIDUwTDAgMTZMMjggMEw1NiAxNkw1NiA1MEwyOCA2NkwyOCAxMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU5LDI1NSwwLjEpIiBzdHJva2Utd2lkdGg9IjIiPjwvcGF0aD4KPHBhdGggZD0iTTI4IDBMMjggMzRMMCA1MEwwIDg0TDI4IDEwMEw1NiA4NEw1NiA1MEwyOCAzNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU5LDI1NSwwLjEpIiBzdHJva2Utd2lkdGg9IjIiPjwvcGF0aD4KPC9zdmc+");
-        opacity: 0.08;
-      }
-      .page-title {
-        font-size: clamp(2.5rem, 6vw, 3.5rem);
-        font-weight: 900;
-        margin-bottom: 1rem;
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        opacity: 0;
-        animation: heroFadeInUp 1.2s cubic-bezier(0.25, 0.8, 0.25, 1) 0.5s
-          forwards;
-      }
-      .page-subtitle {
-        font-size: clamp(1.1rem, 3vw, 1.3rem);
+      body {
+        font-family: "Poppins", sans-serif;
+        min-height: 100vh;
+        background: var(--bg-gradient);
+        line-height: 1.4;
         font-weight: 400;
-        margin-bottom: 1rem;
-        opacity: 0;
-        animation: heroFadeInUp 1.2s cubic-bezier(0.25, 0.8, 0.25, 1) 0.8s
-          forwards;
-        color: hsla(0, 0%, 100%, 0.9);
-      }
-      .info-card {
-        background: var(--white);
-        border-radius: var(--border-radius);
-        padding: 1.8rem;
-        margin-bottom: 2rem;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-      }
-      .info-card h2 {
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: var(--primary-dark);
-        margin-bottom: 1.5rem;
+        color: var(--text-dark);
+        font-size: 13px;
       }
 
+      /* Dashboard Layout */
+      .dashboard-container {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        min-height: 100vh;
+        gap: 0;
+      }
+
+      /* Left Sidebar - Patient Info Panel */
+      .patient-panel {
+        background: var(--primary-gradient);
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        color: var(--text-light);
+      }
+
+      .patient-panel-header {
+        text-align: center;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .patient-panel-header h1 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+
+      .patient-panel-header p {
+        font-size: 0.7rem;
+        opacity: 0.8;
+      }
+
+      .patient-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .patient-input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .patient-input-group label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        opacity: 0.9;
+      }
+
+      .patient-input-group input {
+        padding: 0.5rem 0.6rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.15);
+        color: var(--text-light);
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: var(--transition-fast);
+      }
+
+      .patient-input-group input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .patient-input-group input:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+
+      .btn-calculate-sidebar {
+        margin-top: 0.5rem;
+        padding: 0.6rem 1rem;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        color: var(--text-light);
+        font-weight: 600;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .btn-calculate-sidebar:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      /* Main Content Area */
+      .main-content {
+        padding: 0.75rem;
+        overflow-y: auto;
+      }
+
+      /* Calculator Grid */
       .calculator-grid {
         display: grid;
-        gap: 2rem;
-        margin-top: 2rem;
-        grid-template-columns: 1fr;
+        gap: 0.6rem;
+        grid-template-columns: repeat(2, 1fr);
       }
-      @media (min-width: 768px) {
-        .calculator-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-      @media (min-width: 1200px) {
+
+      @media (min-width: 900px) {
         .calculator-grid {
           grid-template-columns: repeat(3, 1fr);
         }
       }
-      @media (min-width: 1600px) {
+
+      @media (min-width: 1200px) {
         .calculator-grid {
           grid-template-columns: repeat(4, 1fr);
         }
       }
 
+      @media (min-width: 1500px) {
+        .calculator-grid {
+          grid-template-columns: repeat(5, 1fr);
+        }
+      }
+
+      @media (min-width: 1800px) {
+        .calculator-grid {
+          grid-template-columns: repeat(6, 1fr);
+        }
+      }
+
+      /* Compact Calculator Card */
       .calculator-card {
         background: hsla(0, 0%, 100%, 0.95);
-        backdrop-filter: blur(20px);
+        backdrop-filter: blur(10px);
         border-radius: var(--border-radius);
-        padding: 1.8rem;
-        height: 100%;
-        transition: var(--transition);
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        padding: 0.6rem;
+        transition: var(--transition-fast);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         display: flex;
         flex-direction: column;
         position: relative;
         overflow: hidden;
       }
+
       .calculator-card::before {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 4px;
+        height: 3px;
         background: var(--primary-gradient);
         transform: scaleX(0);
-        transition: transform 0.3s ease;
+        transition: transform 0.2s ease;
         transform-origin: left;
       }
+
       .calculator-card:hover::before {
         transform: scaleX(1);
       }
+
       .calculator-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         background: #fff;
       }
+
+      /* Card Header */
       .calculator-card-header {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
       }
+
       .card-icon {
-        width: 60px;
-        height: 60px;
+        width: 28px;
+        height: 28px;
         background: var(--primary-gradient);
-        border-radius: var(--border-radius);
+        border-radius: 6px;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: var(--transition);
-        box-shadow: var(--shadow-primary);
         flex-shrink: 0;
       }
+
       .card-icon i {
-        font-size: 1.8rem;
+        font-size: 0.75rem;
         color: #fff;
       }
-      .calculator-card:hover .card-icon {
-        transform: rotate(5deg) scale(1.1);
-        box-shadow: 0 8px 25px rgba(43, 88, 118, 0.4);
-      }
-      h3 {
-        font-size: 1.3rem;
+
+      .calculator-card h3 {
+        font-size: 0.72rem;
         font-weight: 700;
         color: var(--primary-dark);
         margin: 0;
+        line-height: 1.2;
       }
+
+      /* Card Body - Inputs */
       .calculator-card-body {
-        display: grid;
-        gap: 1.2rem;
-        margin-bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        margin-bottom: 0.4rem;
       }
-      .form-floating {
-        position: relative;
+
+      .compact-input {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
       }
-      .form-control {
-        display: block;
-        width: 100%;
-        padding: 0.9rem 1rem;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.6;
-        color: var(--text-dark);
-        background-color: var(--bg-light);
-        background-clip: padding-box;
+
+      .compact-input label {
+        font-size: 0.65rem;
+        color: var(--text-muted);
+        min-width: 65px;
+        flex-shrink: 0;
+      }
+
+      .compact-input input {
+        flex: 1;
+        padding: 0.3rem 0.4rem;
+        font-size: 0.75rem;
         border: 1px solid rgba(0, 0, 0, 0.1);
-        appearance: none;
-        border-radius: 10px;
-        transition: var(--transition);
+        border-radius: 5px;
+        background: var(--bg-light);
+        min-width: 0;
+        transition: var(--transition-fast);
       }
-      .form-control:focus {
+
+      .compact-input input:focus {
         outline: none;
         border-color: var(--primary-dark);
-        box-shadow: 0 0 0 3px var(--primary-alpha);
-        background-color: var(--white);
+        background: var(--white);
       }
-      .form-floating label {
-        position: absolute;
-        top: 50%;
-        left: 1rem;
-        transform: translateY(-50%);
-        pointer-events: none;
-        transition: var(--transition);
-        color: var(--text-muted);
-        font-weight: 500;
-        background-color: var(--bg-light);
-        padding: 0 0.25rem;
-      }
-      .form-control:focus ~ label,
-      .form-control:not(:placeholder-shown) ~ label,
-      .form-control:valid ~ label {
-        transform: scale(0.85) translateY(-2.2rem);
-        opacity: 1;
-        color: var(--primary-dark);
-        background-color: var(--white);
-      }
+
+      /* Info Text */
       .info-text {
-        font-size: 0.8rem;
+        font-size: 0.6rem;
         color: var(--text-muted);
-        margin-bottom: 1.5rem;
-        font-style: italic;
-        line-height: 1.5;
         background: var(--primary-alpha);
-        padding: 0.75rem 1rem;
-        border-radius: 8px;
-        border-left: 3px solid var(--primary-dark);
+        padding: 0.3rem 0.5rem;
+        border-radius: 4px;
+        border-left: 2px solid var(--primary-dark);
+        margin-bottom: 0.4rem;
+        line-height: 1.3;
       }
+
+      /* Result Box */
       .result-box {
-        background: hsla(0, 0%, 100%, 0.8);
-        backdrop-filter: blur(20px);
-        border-radius: 16px;
-        padding: 0.5rem;
+        background: hsla(0, 0%, 98%, 1);
+        border-radius: 8px;
+        padding: 0.35rem;
         margin-top: auto;
-        border: 1px solid rgba(43, 88, 118, 0.1);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(43, 88, 118, 0.08);
       }
+
       .result-item {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0.5rem;
-        border-radius: 12px;
-        transition: var(--transition);
-        position: relative;
+        padding: 0.25rem 0.35rem;
+        border-radius: 6px;
+        transition: var(--transition-fast);
       }
+
+      .result-item + .result-item {
+        margin-top: 0.2rem;
+      }
+
       .result-label {
         display: flex;
         align-items: center;
         color: var(--text-dark);
-        font-size: 0.9rem;
+        font-size: 0.65rem;
         font-weight: 600;
       }
+
       .result-label i {
-        margin-right: 0.75rem;
+        margin-right: 0.4rem;
         color: var(--primary-dark);
-        font-size: 1.1rem;
-        width: 24px;
+        font-size: 0.7rem;
+        width: 14px;
         text-align: center;
       }
+
       .result-value {
-        padding: 0.6rem 1rem;
-        border-radius: 10px;
-        min-width: 100px;
+        padding: 0.25rem 0.5rem;
+        border-radius: 5px;
+        min-width: 55px;
         text-align: center;
-        transition: var(--transition);
-        position: relative;
-        overflow: hidden;
+        transition: var(--transition-fast);
         font-weight: 600;
         background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
         border: 1px dashed #cbd5e0;
         color: #64748b;
-        font-size: 0.9rem;
+        font-size: 0.7rem;
       }
+
       .result-item.has-result .result-value {
         background: var(--primary-gradient);
         color: var(--text-light);
-        border: 1px solid rgba(0, 0, 0, 0);
-        font-weight: 700;
-        box-shadow: 0 6px 20px rgba(43, 88, 118, 0.3);
-        font-family: "Roboto Mono", monospace;
-        font-size: 1rem;
-        transform: scale(1.05);
-      }
-      .btn-calculate {
-        padding: 1rem 2.5rem;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: var(--transition);
         border: none;
-        cursor: pointer;
-        text-decoration: none;
-        display: inline-block;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        background: var(--primary-gradient);
-        color: var(--text-light);
-        box-shadow: 0 3px 12px rgba(43, 88, 118, 0.3);
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        box-shadow: 0 10px 30px rgba(43, 88, 118, 0.3);
+        font-weight: 700;
+        box-shadow: 0 3px 10px rgba(43, 88, 118, 0.25);
+        font-family: "Roboto Mono", monospace;
+        font-size: 0.75rem;
       }
-      .btn-calculate:hover {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 15px 40px rgba(43, 88, 118, 0.4);
-        color: var(--text-light);
-        text-decoration: none;
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .dashboard-container {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 1fr;
+        }
+
+        .patient-panel {
+          position: relative;
+          height: auto;
+          padding: 0.75rem;
+        }
+
+        .patient-form {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        .patient-input-group {
+          flex: 1;
+          min-width: 80px;
+        }
+
+        .btn-calculate-sidebar {
+          flex: 1;
+          min-width: 100px;
+        }
+
+        .main-content {
+          padding: 0.5rem;
+        }
+
+        .calculator-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.5rem;
+        }
       }
-      .btn-calculate i {
-        margin-left: 0.75rem;
-        transition: transform 0.3s ease;
+
+      @media (max-width: 480px) {
+        .calculator-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .patient-form {
+          flex-direction: column;
+        }
+
+        .patient-input-group {
+          min-width: 100%;
+        }
       }
-      .btn-calculate:hover i {
-        transform: translateX(8px) scale(1.1);
+
+      /* Scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: rgba(43, 88, 118, 0.3);
+        border-radius: 3px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(43, 88, 118, 0.5);
       }
     </style>
   </head>
   <body>
-    <div class="calculator-hero">
-      <div class="hero-overlay"></div>
-      <div class="container-fluid text-center" style="position: relative">
-        <h1 class="page-title">Anesthesia Drug Calculator</h1>
-        <p class="page-subtitle">Calculate precise dosages with confidence</p>
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <form onsubmit="event.preventDefault(); calculateAll();">
-        <div class="info-card">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="age"
-                  class="form-control"
-                  placeholder="Age"
-                />
-                <label for="age">Age (years)</label>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="height"
-                  class="form-control"
-                  placeholder="Height"
-                />
-                <label for="height">Height (cm)</label>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="weight"
-                  class="form-control"
-                  placeholder="Weight"
-                  step="0.1"
-                  required
-                />
-                <label for="weight">Weight (kg)</label>
-              </div>
-            </div>
-          </div>
+    <div class="dashboard-container">
+      <!-- Left Sidebar - Patient Info -->
+      <aside class="patient-panel">
+        <div class="patient-panel-header">
+          <h1><i class="fas fa-stethoscope"></i> Drug Calculator</h1>
+          <p>Anesthesia Dosage</p>
         </div>
+        <form class="patient-form" onsubmit="event.preventDefault(); calculateAll();">
+          <div class="patient-input-group">
+            <label for="age">Age (years)</label>
+            <input type="number" id="age" placeholder="Age" />
+          </div>
+          <div class="patient-input-group">
+            <label for="height">Height (cm)</label>
+            <input type="number" id="height" placeholder="Height" />
+          </div>
+          <div class="patient-input-group">
+            <label for="weight">Weight (kg) *</label>
+            <input type="number" id="weight" placeholder="Weight" step="0.1" required />
+          </div>
+          <button type="submit" class="btn-calculate-sidebar">
+            <i class="fas fa-calculator"></i> Calculate
+          </button>
+        </form>
+      </aside>
 
+      <!-- Main Content - Drug Cards -->
+      <main class="main-content">
         <div class="calculator-grid">
           <!-- NEP Card -->
           <div class="calculator-card">
@@ -469,34 +484,18 @@
               <h3>Norepinephrine (NEP)</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="nep_conc"
-                  class="form-control"
-                  value="20"
-                  step="0.01"
-                  placeholder="Concentration"
-                />
-                <label for="nep_conc">Concentration (mcg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mcg/ml)</label>
+                <input type="number" id="nep_conc" value="20" step="0.01" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="nep_dr"
-                  class="form-control"
-                  value="0.01"
-                  step="0.001"
-                  placeholder="Dose Rate"
-                />
-                <label for="nep_dr">Dose Rate (mcg/kg/min)</label>
+              <div class="compact-input">
+                <label>Rate (mcg/kg/min)</label>
+                <input type="number" id="nep_dr" value="0.01" step="0.001" />
               </div>
             </div>
             <div class="result-box">
               <div class="result-item" id="nep_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> C.I. (ml/hr)</div>
                 <div class="result-value" id="nep_result">-</div>
               </div>
             </div>
@@ -509,34 +508,18 @@
               <h3>Epinephrine (EPI)</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="epi_conc"
-                  class="form-control"
-                  value="20"
-                  step="0.01"
-                  placeholder="Concentration"
-                />
-                <label for="epi_conc">Concentration (mcg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mcg/ml)</label>
+                <input type="number" id="epi_conc" value="20" step="0.01" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="epi_dr"
-                  class="form-control"
-                  value="0.01"
-                  step="0.001"
-                  placeholder="Dose Rate"
-                />
-                <label for="epi_dr">Dose Rate (mcg/kg/min)</label>
+              <div class="compact-input">
+                <label>Rate (mcg/kg/min)</label>
+                <input type="number" id="epi_dr" value="0.01" step="0.001" />
               </div>
             </div>
             <div class="result-box">
               <div class="result-item" id="epi_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> C.I. (ml/hr)</div>
                 <div class="result-value" id="epi_result">-</div>
               </div>
             </div>
@@ -549,34 +532,18 @@
               <h3>Dopamine (DOPA)</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="dopa_conc"
-                  class="form-control"
-                  value="1"
-                  step="0.01"
-                  placeholder="Concentration"
-                />
-                <label for="dopa_conc">Concentration (mg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mg/ml)</label>
+                <input type="number" id="dopa_conc" value="1" step="0.01" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="dopa_dr"
-                  class="form-control"
-                  value="5"
-                  step="0.1"
-                  placeholder="Dose Rate"
-                />
-                <label for="dopa_dr">Dose Rate (mcg/kg/min)</label>
+              <div class="compact-input">
+                <label>Rate (mcg/kg/min)</label>
+                <input type="number" id="dopa_dr" value="5" step="0.1" />
               </div>
             </div>
             <div class="result-box">
               <div class="result-item" id="dopa_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> C.I. (ml/hr)</div>
                 <div class="result-value" id="dopa_result">-</div>
               </div>
             </div>
@@ -589,34 +556,18 @@
               <h3>Dobutamine (DOBU)</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="dobu_conc"
-                  class="form-control"
-                  value="1"
-                  step="0.01"
-                  placeholder="Concentration"
-                />
-                <label for="dobu_conc">Concentration (mg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mg/ml)</label>
+                <input type="number" id="dobu_conc" value="1" step="0.01" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="dobu_dr"
-                  class="form-control"
-                  value="5"
-                  step="0.1"
-                  placeholder="Dose Rate"
-                />
-                <label for="dobu_dr">Dose Rate (mcg/kg/min)</label>
+              <div class="compact-input">
+                <label>Rate (mcg/kg/min)</label>
+                <input type="number" id="dobu_dr" value="5" step="0.1" />
               </div>
             </div>
             <div class="result-box">
               <div class="result-item" id="dobu_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> C.I. (ml/hr)</div>
                 <div class="result-value" id="dobu_result">-</div>
               </div>
             </div>
@@ -625,40 +576,22 @@
           <!-- NTG Card -->
           <div class="calculator-card">
             <div class="calculator-card-header">
-              <div class="card-icon">
-                <i class="fas fa-prescription-bottle"></i>
-              </div>
+              <div class="card-icon"><i class="fas fa-prescription-bottle"></i></div>
               <h3>Nitroglycerin (NTG)</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="ntg_conc"
-                  class="form-control"
-                  value="1"
-                  step="0.01"
-                  placeholder="Concentration"
-                />
-                <label for="ntg_conc">Concentration (mg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mg/ml)</label>
+                <input type="number" id="ntg_conc" value="1" step="0.01" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="ntg_dr"
-                  class="form-control"
-                  value="0.5"
-                  step="0.01"
-                  placeholder="Dose Rate"
-                />
-                <label for="ntg_dr">Dose Rate (mcg/kg/min)</label>
+              <div class="compact-input">
+                <label>Rate (mcg/kg/min)</label>
+                <input type="number" id="ntg_dr" value="0.5" step="0.01" />
               </div>
             </div>
             <div class="result-box">
               <div class="result-item" id="ntg_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> C.I. (ml/hr)</div>
                 <div class="result-value" id="ntg_result">-</div>
               </div>
             </div>
@@ -668,37 +601,21 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-flask"></i></div>
-              <h3>Sodium Nitroprusside (SNP)</h3>
+              <h3>Nitroprusside (SNP)</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="snp_conc"
-                  class="form-control"
-                  value="1"
-                  step="0.01"
-                  placeholder="Concentration"
-                />
-                <label for="snp_conc">Concentration (mg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mg/ml)</label>
+                <input type="number" id="snp_conc" value="1" step="0.01" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="snp_dr"
-                  class="form-control"
-                  value="0.5"
-                  step="0.01"
-                  placeholder="Dose Rate"
-                />
-                <label for="snp_dr">Dose Rate (mcg/kg/min)</label>
+              <div class="compact-input">
+                <label>Rate (mcg/kg/min)</label>
+                <input type="number" id="snp_dr" value="0.5" step="0.01" />
               </div>
             </div>
             <div class="result-box">
               <div class="result-item" id="snp_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> C.I. (ml/hr)</div>
                 <div class="result-value" id="snp_result">-</div>
               </div>
             </div>
@@ -711,51 +628,26 @@
               <h3>Vasopressin (VASO)</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="vaso_conc"
-                  class="form-control"
-                  value="1"
-                  step="0.01"
-                  placeholder="Concentration"
-                />
-                <label for="vaso_conc">Concentration (unit/ml)</label>
+              <div class="compact-input">
+                <label>Conc (unit/ml)</label>
+                <input type="number" id="vaso_conc" value="1" step="0.01" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="vaso_dr1"
-                  class="form-control"
-                  value="0.04"
-                  step="0.001"
-                  placeholder="Dose Rate"
-                />
-                <label for="vaso_dr1">Dose Rate (unit/min)</label>
+              <div class="compact-input">
+                <label>Rate (unit/min)</label>
+                <input type="number" id="vaso_dr1" value="0.04" step="0.001" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="vaso_dr2"
-                  class="form-control"
-                  value="0.04"
-                  step="0.001"
-                  placeholder="Dose Rate"
-                />
-                <label for="vaso_dr2">Dose Rate (unit/kg/hr)</label>
+              <div class="compact-input">
+                <label>Rate (unit/kg/hr)</label>
+                <input type="number" id="vaso_dr2" value="0.04" step="0.001" />
               </div>
             </div>
             <div class="result-box">
               <div class="result-item" id="vaso1_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> unit/min (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> unit/min</div>
                 <div class="result-value" id="vaso1_result">-</div>
               </div>
               <div class="result-item" id="vaso2_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> unit/kg/hr (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> unit/kg/hr</div>
                 <div class="result-value" id="vaso2_result">-</div>
               </div>
             </div>
@@ -768,30 +660,19 @@
               <h3>Propofol (PPF)</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="ppf_conc"
-                  class="form-control"
-                  value="20"
-                  step="0.01"
-                  placeholder="Concentration"
-                />
-                <label for="ppf_conc">Concentration (mg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mg/ml)</label>
+                <input type="number" id="ppf_conc" value="20" step="0.01" />
               </div>
             </div>
-            <p class="info-text">Recommended Range: 6-12 mg/kg/hr</p>
+            <p class="info-text">Range: 6-12 mg/kg/hr</p>
             <div class="result-box">
               <div class="result-item" id="ppf1_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. MIN (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> MIN (ml/hr)</div>
                 <div class="result-value" id="ppf1_result">-</div>
               </div>
               <div class="result-item" id="ppf2_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. MAX (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> MAX (ml/hr)</div>
                 <div class="result-value" id="ppf2_result">-</div>
               </div>
             </div>
@@ -804,30 +685,19 @@
               <h3>Remifentanil (RFTN)</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="rftn_conc"
-                  class="form-control"
-                  value="20"
-                  step="0.01"
-                  placeholder="Concentration"
-                />
-                <label for="rftn_conc">Concentration (mcg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mcg/ml)</label>
+                <input type="number" id="rftn_conc" value="20" step="0.01" />
               </div>
             </div>
-            <p class="info-text">Recommended Range: 0.1-1 mcg/kg/min</p>
+            <p class="info-text">Range: 0.1-1 mcg/kg/min</p>
             <div class="result-box">
               <div class="result-item" id="rftn1_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. MIN (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> MIN (ml/hr)</div>
                 <div class="result-value" id="rftn1_result">-</div>
               </div>
               <div class="result-item" id="rftn2_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. MAX (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> MAX (ml/hr)</div>
                 <div class="result-value" id="rftn2_result">-</div>
               </div>
             </div>
@@ -840,30 +710,19 @@
               <h3>Sufentanil (SuFTN)</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="suftn_conc"
-                  class="form-control"
-                  value="5"
-                  step="0.01"
-                  placeholder="Concentration"
-                />
-                <label for="suftn_conc">Concentration (mcg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mcg/ml)</label>
+                <input type="number" id="suftn_conc" value="5" step="0.01" />
               </div>
             </div>
-            <p class="info-text">Recommended Range: 0.5-1.5 mcg/kg/hr</p>
+            <p class="info-text">Range: 0.5-1.5 mcg/kg/hr</p>
             <div class="result-box">
               <div class="result-item" id="suftn1_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. MIN (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> MIN (ml/hr)</div>
                 <div class="result-value" id="suftn1_result">-</div>
               </div>
               <div class="result-item" id="suftn2_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. MAX (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> MAX (ml/hr)</div>
                 <div class="result-value" id="suftn2_result">-</div>
               </div>
             </div>
@@ -876,32 +735,19 @@
               <h3>Tranexamic Acid (TXA)</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="txa_conc"
-                  class="form-control"
-                  value="100"
-                  step="0.01"
-                  placeholder="Concentration"
-                />
-                <label for="txa_conc">Concentration (mg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mg/ml)</label>
+                <input type="number" id="txa_conc" value="100" step="0.01" />
               </div>
             </div>
-            <p class="info-text">
-              Loading: 10 mg/kg over 20min<br />Maintenance: 1 mg/kg/hr
-            </p>
+            <p class="info-text">Load: 10mg/kg/20min | Maint: 1mg/kg/hr</p>
             <div class="result-box">
               <div class="result-item" id="txa1_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Loading (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Load (ml/hr)</div>
                 <div class="result-value" id="txa1_result">-</div>
               </div>
               <div class="result-item" id="txa2_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Maintenance (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Maint (ml/hr)</div>
                 <div class="result-value" id="txa2_result">-</div>
               </div>
             </div>
@@ -914,50 +760,27 @@
               <h3>Calcium Gluconate</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="ca_conc"
-                  class="form-control"
-                  value="100"
-                  placeholder="Concentration"
-                />
-                <label for="ca_conc">Concentration (mg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mg/ml)</label>
+                <input type="number" id="ca_conc" value="100" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="ca_bolus"
-                  class="form-control"
-                  value="1.0"
-                  step="0.1"
-                  placeholder="Bolus Dose"
-                />
-                <label for="ca_bolus">Bolus Dose (g)</label>
+              <div class="compact-input">
+                <label>Bolus (g)</label>
+                <input type="number" id="ca_bolus" value="1.0" step="0.1" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="ca_dr"
-                  class="form-control"
-                  value="5"
-                  placeholder="Dose Rate"
-                />
-                <label for="ca_dr">Dose Rate (mg/kg/hr)</label>
+              <div class="compact-input">
+                <label>Rate (mg/kg/hr)</label>
+                <input type="number" id="ca_dr" value="5" />
               </div>
             </div>
-            <p class="info-text">Bolus: 1-2 g<br />C.I.: 5-10 mg/kg/hr</p>
+            <p class="info-text">Bolus: 1-2g | C.I.: 5-10 mg/kg/hr</p>
             <div class="result-box">
               <div class="result-item" id="ca_bolus_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Bolus (ml)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Bolus (ml)</div>
                 <div class="result-value" id="ca_bolus_result">-</div>
               </div>
               <div class="result-item" id="ca_cont_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> C.I. (ml/hr)</div>
                 <div class="result-value" id="ca_cont_result">-</div>
               </div>
             </div>
@@ -970,53 +793,27 @@
               <h3>Magnesium Sulfate</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="mg_conc"
-                  class="form-control"
-                  value="200"
-                  placeholder="Concentration"
-                />
-                <label for="mg_conc">Concentration (mg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mg/ml)</label>
+                <input type="number" id="mg_conc" value="200" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="mg_bolus"
-                  class="form-control"
-                  value="1.0"
-                  step="0.1"
-                  placeholder="Bolus Dose"
-                />
-                <label for="mg_bolus">Bolus Dose (g)</label>
+              <div class="compact-input">
+                <label>Bolus (g)</label>
+                <input type="number" id="mg_bolus" value="1.0" step="0.1" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="mg_infusion"
-                  class="form-control"
-                  value="1.0"
-                  step="0.1"
-                  placeholder="Infusion Rate"
-                />
-                <label for="mg_infusion">Infusion Rate (g/hr)</label>
+              <div class="compact-input">
+                <label>Infusion (g/hr)</label>
+                <input type="number" id="mg_infusion" value="1.0" step="0.1" />
               </div>
             </div>
-            <p class="info-text">
-              Bolus: 1-2 g IV slow (over 30 min)<br />Infusion: 1-2 g/hr
-            </p>
+            <p class="info-text">Bolus: 1-2g slow | Inf: 1-2 g/hr</p>
             <div class="result-box">
               <div class="result-item" id="mg_bolus_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Bolus (ml)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Bolus (ml)</div>
                 <div class="result-value" id="mg_bolus_result">-</div>
               </div>
               <div class="result-item" id="mg_infusion_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> C.I. (ml/hr)</div>
                 <div class="result-value" id="mg_infusion_result">-</div>
               </div>
             </div>
@@ -1029,35 +826,19 @@
               <h3>Sodium Bicarbonate</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="sbic_conc"
-                  class="form-control"
-                  value="1"
-                  step="0.01"
-                  placeholder="Concentration"
-                />
-                <label for="sbic_conc">Concentration (mEq/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mEq/ml)</label>
+                <input type="number" id="sbic_conc" value="1" step="0.01" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="sbic_dr"
-                  class="form-control"
-                  value="1"
-                  step="0.1"
-                  placeholder="Bolus Dose"
-                />
-                <label for="sbic_dr">Bolus (mEq/kg)</label>
+              <div class="compact-input">
+                <label>Bolus (mEq/kg)</label>
+                <input type="number" id="sbic_dr" value="1" step="0.1" />
               </div>
             </div>
-            <p class="info-text">Typical bolus dose is 1 mEq/kg.</p>
+            <p class="info-text">Typical bolus: 1 mEq/kg</p>
             <div class="result-box">
               <div class="result-item" id="sbic_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Bolus (ml)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Bolus (ml)</div>
                 <div class="result-value" id="sbic_result">-</div>
               </div>
             </div>
@@ -1070,52 +851,27 @@
               <h3>Phenylephrine</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="phen_conc"
-                  class="form-control"
-                  value="100"
-                  placeholder="Concentration"
-                />
-                <label for="phen_conc">Concentration (mcg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mcg/ml)</label>
+                <input type="number" id="phen_conc" value="100" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="phen_bolus"
-                  class="form-control"
-                  value="50"
-                  placeholder="Bolus Dose"
-                />
-                <label for="phen_bolus">Bolus Dose (mcg)</label>
+              <div class="compact-input">
+                <label>Bolus (mcg)</label>
+                <input type="number" id="phen_bolus" value="50" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="phen_dr"
-                  class="form-control"
-                  value="0.1"
-                  step="0.01"
-                  placeholder="Dose Rate"
-                />
-                <label for="phen_dr">Dose Rate (mcg/kg/min)</label>
+              <div class="compact-input">
+                <label>Rate (mcg/kg/min)</label>
+                <input type="number" id="phen_dr" value="0.1" step="0.01" />
               </div>
             </div>
-            <p class="info-text">
-              Bolus: 50-100 mcg IV push<br />C.I.: 0.1-0.5 mcg/kg/min
-            </p>
+            <p class="info-text">Bolus: 50-100mcg | C.I.: 0.1-0.5</p>
             <div class="result-box">
               <div class="result-item" id="phen_bolus_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Bolus (ml)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Bolus (ml)</div>
                 <div class="result-value" id="phen_bolus_result">-</div>
               </div>
               <div class="result-item" id="phen_cont_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> C.I. (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> C.I. (ml/hr)</div>
                 <div class="result-value" id="phen_cont_result">-</div>
               </div>
             </div>
@@ -1128,49 +884,27 @@
               <h3>Dantrolene</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="dant_conc"
-                  class="form-control"
-                  value="20"
-                  placeholder="Concentration"
-                />
-                <label for="dant_conc">Concentration (mg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mg/ml)</label>
+                <input type="number" id="dant_conc" value="20" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="dant_infusion"
-                  class="form-control"
-                  value="0.25"
-                  step="0.01"
-                  placeholder="Infusion Rate"
-                />
-                <label for="dant_infusion">Infusion (mg/kg/hr)</label>
+              <div class="compact-input">
+                <label>Infusion (mg/kg/hr)</label>
+                <input type="number" id="dant_infusion" value="0.25" step="0.01" />
               </div>
             </div>
-            <p class="info-text">
-              Initial Bolus: 2.5 mg/kg. Repeat as needed up to 10 mg/kg
-              total.<br />C.I.: 0.25-0.5 mg/kg/hr
-            </p>
+            <p class="info-text">Bolus: 2.5mg/kg (max 10) | C.I.: 0.25-0.5</p>
             <div class="result-box">
               <div class="result-item" id="dant_bolus_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Bolus per dose (ml)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Bolus (ml)</div>
                 <div class="result-value" id="dant_bolus_result">-</div>
               </div>
               <div class="result-item" id="dant_max_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Max cumulative (ml)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Max (ml)</div>
                 <div class="result-value" id="dant_max_result">-</div>
               </div>
               <div class="result-item" id="dant_infusion_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Infusion (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Inf (ml/hr)</div>
                 <div class="result-value" id="dant_infusion_result">-</div>
               </div>
             </div>
@@ -1183,52 +917,27 @@
               <h3>Lidocaine</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="lido_conc"
-                  class="form-control"
-                  value="20"
-                  placeholder="Concentration"
-                />
-                <label for="lido_conc">Concentration (mg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mg/ml)</label>
+                <input type="number" id="lido_conc" value="20" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="lido_bolus"
-                  class="form-control"
-                  value="1.0"
-                  step="0.1"
-                  placeholder="Bolus Dose"
-                />
-                <label for="lido_bolus">Bolus Dose (mg/kg)</label>
+              <div class="compact-input">
+                <label>Bolus (mg/kg)</label>
+                <input type="number" id="lido_bolus" value="1.0" step="0.1" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="lido_infusion"
-                  class="form-control"
-                  value="1"
-                  placeholder="Infusion Rate"
-                />
-                <label for="lido_infusion">Infusion (mg/min)</label>
+              <div class="compact-input">
+                <label>Infusion (mg/min)</label>
+                <input type="number" id="lido_infusion" value="1" />
               </div>
             </div>
-            <p class="info-text">
-              Bolus: 1-1.5 mg/kg over 2-3 min<br />C.I.: 1-4 mg/min
-            </p>
+            <p class="info-text">Bolus: 1-1.5mg/kg | C.I.: 1-4 mg/min</p>
             <div class="result-box">
               <div class="result-item" id="lido_bolus_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Bolus (ml)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Bolus (ml)</div>
                 <div class="result-value" id="lido_bolus_result">-</div>
               </div>
               <div class="result-item" id="lido_infusion_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Infusion (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Inf (ml/hr)</div>
                 <div class="result-value" id="lido_infusion_result">-</div>
               </div>
             </div>
@@ -1241,44 +950,23 @@
               <h3>Atropine</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="atropine_conc"
-                  class="form-control"
-                  value="0.5"
-                  step="0.1"
-                  placeholder="Concentration"
-                />
-                <label for="atropine_conc">Concentration (mg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mg/ml)</label>
+                <input type="number" id="atropine_conc" value="0.5" step="0.1" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="atropine_bolus"
-                  class="form-control"
-                  value="0.5"
-                  step="0.1"
-                  placeholder="Bolus Dose"
-                />
-                <label for="atropine_bolus">Bolus Dose (mg)</label>
+              <div class="compact-input">
+                <label>Bolus (mg)</label>
+                <input type="number" id="atropine_bolus" value="0.5" step="0.1" />
               </div>
             </div>
-            <p class="info-text">
-              Bolus: 0.5 mg IV. Repeat every 3-5 min up to 3 mg total.<br />(Not
-              weight-based)
-            </p>
+            <p class="info-text">Bolus: 0.5mg q3-5min (max 3mg)</p>
             <div class="result-box">
               <div class="result-item" id="atropine_bolus_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Bolus per dose (ml)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Bolus (ml)</div>
                 <div class="result-value" id="atropine_bolus_result">-</div>
               </div>
               <div class="result-item" id="atropine_max_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Max cumulative (ml)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Max (ml)</div>
                 <div class="result-value" id="atropine_max_result">-</div>
               </div>
             </div>
@@ -1291,71 +979,34 @@
               <h3>Amiodarone</h3>
             </div>
             <div class="calculator-card-body">
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="amio_conc"
-                  class="form-control"
-                  value="1.5"
-                  step="0.1"
-                  placeholder="Concentration"
-                />
-                <label for="amio_conc">Concentration (mg/ml)</label>
+              <div class="compact-input">
+                <label>Conc (mg/ml)</label>
+                <input type="number" id="amio_conc" value="1.5" step="0.1" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="amio_bolus"
-                  class="form-control"
-                  value="5"
-                  step="0.1"
-                  placeholder="Bolus Dose"
-                />
-                <label for="amio_bolus">Bolus Dose (mg/kg)</label>
+              <div class="compact-input">
+                <label>Bolus (mg/kg)</label>
+                <input type="number" id="amio_bolus" value="5" step="0.1" />
               </div>
-              <div class="form-floating">
-                <input
-                  type="number"
-                  id="amio_infusion"
-                  class="form-control"
-                  value="5"
-                  step="0.01"
-                  placeholder="Infusion Rate"
-                />
-                <label for="amio_infusion">Infusion (mcg/kg/min)</label>
+              <div class="compact-input">
+                <label>Inf (mcg/kg/min)</label>
+                <input type="number" id="amio_infusion" value="5" step="0.01" />
               </div>
             </div>
-            <p class="info-text">
-              Bolus: 5 mg/kg IV. (Clinically, 150-300 mg is often given per
-              dose).<br />Infusion: 5-15 mcg/kg/min
-            </p>
+            <p class="info-text">Bolus: 5mg/kg | Inf: 5-15mcg/kg/min</p>
             <div class="result-box">
               <div class="result-item" id="amio_bolus_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Bolus (ml)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Bolus (ml)</div>
                 <div class="result-value" id="amio_bolus_result">-</div>
               </div>
               <div class="result-item" id="amio_infusion_result_item">
-                <div class="result-label">
-                  <i class="fas fa-calculator"></i> Infusion (ml/hr)
-                </div>
+                <div class="result-label"><i class="fas fa-tint"></i> Inf (ml/hr)</div>
                 <div class="result-value" id="amio_infusion_result">-</div>
               </div>
             </div>
           </div>
         </div>
-      </form>
+      </main>
     </div>
-    <button
-      type="button"
-      class="btn-calculate"
-      onclick="calculateAll()"
-      title="Calculate All Dosages"
-    >
-      Calculate
-      <i class="fas fa-arrow-right"></i>
-    </button>
 
     <script>
       function calculateAll() {
