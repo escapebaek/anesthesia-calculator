@@ -445,6 +445,144 @@
       ::-webkit-scrollbar-thumb:hover {
         background: rgba(43, 88, 118, 0.5);
       }
+
+      /* Drug Name Clickable Style */
+      .calculator-card h3 {
+        cursor: pointer;
+        transition: var(--transition-fast);
+        position: relative;
+      }
+
+      .calculator-card h3:hover {
+        color: #3b6a8c;
+        text-decoration: underline;
+      }
+
+      .calculator-card h3::after {
+        content: '\f03e';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 0.55rem;
+        margin-left: 0.3rem;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        color: var(--primary-dark);
+      }
+
+      .calculator-card h3:hover::after {
+        opacity: 0.7;
+      }
+
+      /* Drug Image Modal */
+      .drug-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(5px);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .drug-modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .drug-modal {
+        background: white;
+        border-radius: var(--border-radius-lg);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        max-width: 90vw;
+        max-height: 90vh;
+        overflow: hidden;
+        transform: scale(0.9) translateY(20px);
+        transition: transform 0.3s ease;
+      }
+
+      .drug-modal-overlay.active .drug-modal {
+        transform: scale(1) translateY(0);
+      }
+
+      .drug-modal-header {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .drug-modal-header h2 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .drug-modal-close {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition-fast);
+        color: white;
+        font-size: 1rem;
+      }
+
+      .drug-modal-close:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: rotate(90deg);
+      }
+
+      .drug-modal-body {
+        padding: 1.5rem;
+        text-align: center;
+      }
+
+      .drug-modal-body img {
+        max-width: 100%;
+        max-height: 60vh;
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .drug-modal-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 2rem;
+        color: var(--text-muted);
+      }
+
+      .drug-modal-placeholder i {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        opacity: 0.3;
+        color: var(--primary-dark);
+      }
+
+      .drug-modal-placeholder p {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .drug-modal-placeholder small {
+        font-size: 0.75rem;
+        opacity: 0.7;
+      }
     </style>
   </head>
   <body>
@@ -481,7 +619,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-syringe"></i></div>
-              <h3>Norepinephrine (NEP)</h3>
+              <h3 onclick="openDrugModal('nep')">Norepinephrine (NEP)</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -505,7 +643,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-heartbeat"></i></div>
-              <h3>Epinephrine (EPI)</h3>
+              <h3 onclick="openDrugModal('epi')">Epinephrine (EPI)</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -529,7 +667,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-pills"></i></div>
-              <h3>Dopamine (DOPA)</h3>
+              <h3 onclick="openDrugModal('dopa')">Dopamine (DOPA)</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -553,7 +691,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-pump-medical"></i></div>
-              <h3>Dobutamine (DOBU)</h3>
+              <h3 onclick="openDrugModal('dobu')">Dobutamine (DOBU)</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -577,7 +715,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-prescription-bottle"></i></div>
-              <h3>Nitroglycerin (NTG)</h3>
+              <h3 onclick="openDrugModal('ntg')">Nitroglycerin (NTG)</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -601,7 +739,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-flask"></i></div>
-              <h3>Nitroprusside (SNP)</h3>
+              <h3 onclick="openDrugModal('snp')">Nitroprusside (SNP)</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -625,7 +763,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-vial"></i></div>
-              <h3>Vasopressin (VASO)</h3>
+              <h3 onclick="openDrugModal('vaso')">Vasopressin (VASO)</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -657,7 +795,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-capsules"></i></div>
-              <h3>Propofol (PPF)</h3>
+              <h3 onclick="openDrugModal('ppf')">Propofol (PPF)</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -682,7 +820,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-prescription"></i></div>
-              <h3>Remifentanil (RFTN)</h3>
+              <h3 onclick="openDrugModal('rftn')">Remifentanil (RFTN)</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -707,7 +845,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-tablets"></i></div>
-              <h3>Sufentanil (SuFTN)</h3>
+              <h3 onclick="openDrugModal('suftn')">Sufentanil (SuFTN)</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -732,7 +870,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-filter"></i></div>
-              <h3>Tranexamic Acid (TXA)</h3>
+              <h3 onclick="openDrugModal('txa')">Tranexamic Acid (TXA)</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -757,7 +895,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-vial"></i></div>
-              <h3>Calcium Gluconate</h3>
+              <h3 onclick="openDrugModal('ca')">Calcium Gluconate</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -790,7 +928,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-vial"></i></div>
-              <h3>Magnesium Sulfate</h3>
+              <h3 onclick="openDrugModal('mg')">Magnesium Sulfate</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -823,7 +961,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-vial"></i></div>
-              <h3>Sodium Bicarbonate</h3>
+              <h3 onclick="openDrugModal('sbic')">Sodium Bicarbonate</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -848,7 +986,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-vial"></i></div>
-              <h3>Phenylephrine</h3>
+              <h3 onclick="openDrugModal('phen')">Phenylephrine</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -881,7 +1019,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-vial"></i></div>
-              <h3>Dantrolene</h3>
+              <h3 onclick="openDrugModal('dant')">Dantrolene</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -914,7 +1052,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-vial"></i></div>
-              <h3>Lidocaine</h3>
+              <h3 onclick="openDrugModal('lido')">Lidocaine</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -947,7 +1085,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-vial"></i></div>
-              <h3>Atropine</h3>
+              <h3 onclick="openDrugModal('atropine')">Atropine</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -976,7 +1114,7 @@
           <div class="calculator-card">
             <div class="calculator-card-header">
               <div class="card-icon"><i class="fas fa-vial"></i></div>
-              <h3>Amiodarone</h3>
+              <h3 onclick="openDrugModal('amio')">Amiodarone</h3>
             </div>
             <div class="calculator-card-body">
               <div class="compact-input">
@@ -1006,6 +1144,21 @@
           </div>
         </div>
       </main>
+    </div>
+
+    <!-- Drug Image Modal -->
+    <div class="drug-modal-overlay" id="drugModal" onclick="closeDrugModalOnOverlay(event)">
+      <div class="drug-modal">
+        <div class="drug-modal-header">
+          <h2 id="drugModalTitle">Drug Name</h2>
+          <button class="drug-modal-close" onclick="closeDrugModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="drug-modal-body" id="drugModalBody">
+          <!-- Image or placeholder will be inserted here -->
+        </div>
+      </div>
     </div>
 
     <script>
@@ -1133,6 +1286,80 @@
           }
         }
       }
+
+      // Drug Image Data - 추후 이미지 경로 추가
+      // 이미지 파일명 형식: images/약물ID.jpg (예: images/nep.jpg)
+      const drugImages = {
+        'nep': { name: 'Norepinephrine (NEP)', image: 'images/nep.jpg' },
+        'epi': { name: 'Epinephrine (EPI)', image: 'images/epi.jpg' },
+        'dopa': { name: 'Dopamine (DOPA)', image: 'images/dopa.jpg' },
+        'dobu': { name: 'Dobutamine (DOBU)', image: 'images/dobu.jpg' },
+        'ntg': { name: 'Nitroglycerin (NTG)', image: 'images/ntg.jpg' },
+        'snp': { name: 'Nitroprusside (SNP)', image: 'images/snp.jpg' },
+        'vaso': { name: 'Vasopressin (VASO)', image: 'images/vaso.jpg' },
+        'ppf': { name: 'Propofol (PPF)', image: 'images/ppf.jpg' },
+        'rftn': { name: 'Remifentanil (RFTN)', image: 'images/rftn.jpg' },
+        'suftn': { name: 'Sufentanil (SuFTN)', image: 'images/suftn.jpg' },
+        'txa': { name: 'Tranexamic Acid (TXA)', image: 'images/txa.jpg' },
+        'ca': { name: 'Calcium Gluconate', image: 'images/ca.jpg' },
+        'mg': { name: 'Magnesium Sulfate', image: 'images/mg.jpg' },
+        'sbic': { name: 'Sodium Bicarbonate', image: 'images/sbic.jpg' },
+        'phen': { name: 'Phenylephrine', image: 'images/phen.jpg' },
+        'dant': { name: 'Dantrolene', image: 'images/dant.jpg' },
+        'lido': { name: 'Lidocaine', image: 'images/lido.jpg' },
+        'atropine': { name: 'Atropine', image: 'images/atropine.jpg' },
+        'amio': { name: 'Amiodarone', image: 'images/amio.jpg' }
+      };
+
+      function openDrugModal(drugId) {
+        const drug = drugImages[drugId];
+        if (!drug) return;
+
+        const modal = document.getElementById('drugModal');
+        const title = document.getElementById('drugModalTitle');
+        const body = document.getElementById('drugModalBody');
+
+        title.textContent = drug.name;
+
+        // 이미지 로드 시도
+        const img = new Image();
+        img.onload = function() {
+          body.innerHTML = `<img src="${drug.image}" alt="${drug.name}">`;
+        };
+        img.onerror = function() {
+          // 이미지가 없을 경우 플레이스홀더 표시
+          body.innerHTML = `
+            <div class="drug-modal-placeholder">
+              <i class="fas fa-image"></i>
+              <p>이미지가 아직 등록되지 않았습니다</p>
+              <small>이미지 경로: ${drug.image}</small>
+            </div>
+          `;
+        };
+        img.src = drug.image;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeDrugModal() {
+        const modal = document.getElementById('drugModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      function closeDrugModalOnOverlay(event) {
+        if (event.target.id === 'drugModal') {
+          closeDrugModal();
+        }
+      }
+
+      // ESC 키로 모달 닫기
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          closeDrugModal();
+        }
+      });
 
       document.addEventListener("DOMContentLoaded", function () {
         const inputs = document.querySelectorAll("input");
